@@ -11,10 +11,15 @@ module.exports.createRide = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { userId, pickup, destination, vehicleType } = req.body;
+    const { pickup, destination, vehicleType } = req.body;
+    const userId = req.user ? req.user._id : req.body.userId;
+
+    if (!userId) {
+        return res.status(400).json({ error: 'User ID is missing' });
+    }
 
     try {
-        const ride = await rideService.createRide({ user: req.user._id, pickup, destination, vehicleType });
+        const ride = await rideService.createRide({ user: userId, pickup, destination, vehicleType });
         res.status(201).json(ride);
 
         const pickupCoordinates = await mapService.getAddressCoordinate(pickup);
@@ -25,7 +30,7 @@ module.exports.createRide = async (req, res) => {
 
         ride.otp = ""
 
-        const rideWithUser = await rideModel.findOne({ _id: ride._id }).populate('user');
+        const rideWithUser = await rideModel.findOne({ _id: ride?._id }).populate('user');
 
         captainsInRadius.map(captain => {
 

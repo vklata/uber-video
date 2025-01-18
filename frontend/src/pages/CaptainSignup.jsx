@@ -39,7 +39,7 @@ const CaptainSignup = () => {
       }
     }
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData)
+    const response = await axios.post(`http://localhost:3000/captains/register`, captainData)
 
     if (response.status === 201) {
       const data = response.data
@@ -61,7 +61,8 @@ const CaptainSignup = () => {
   return (
     <div className='py-5 px-5 h-screen flex flex-col justify-between'>
       <div>
-        <img className='w-20 mb-3' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" />
+      <div className='mb-6 text-[30px] font-semibold'>Autocar</div>
+        {/* <img className='w-20 mb-3' src="https://www.svgrepo.com/show/505031/uber-driver.svg" alt="" /> */}
 
         <form onSubmit={(e) => {
           submitHandler(e)

@@ -11,13 +11,16 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
-    "@react-google-maps/api": "^2.20.3",
-    "axios": "^1.7.7",
+    "@react-google-maps/api": "^2.20.5",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
     "gsap": "^3.12.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
-    "remixicon": "^4.5.0",
+    "react-refresh": "^0.16.0",
+    "react-router-dom": "^6.28.2",
+    "remixicon": "^4.6.0",
+    "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
@@ -34,5 +37,9 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
     "vite": "^5.4.10"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.9",
+    "utf-8-validate": "^6.0.5"
   }
 }

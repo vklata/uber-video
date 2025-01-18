@@ -41,7 +41,7 @@ const Home = () => {
     const { user } = useContext(UserDataContext)
 
     useEffect(() => {
-        socket.emit("join", { userType: "user", userId: user._id })
+        socket.emit("join", { userType: "user", userId: user?._id })
     }, [ user ])
 
     socket.on('ride-confirmed', ride => {
@@ -62,7 +62,7 @@ const Home = () => {
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`, {
+            const response = await axios.get(`http://localhost:3000/maps/get-suggestions`, {
                 params: { input: e.target.value },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -78,7 +78,7 @@ const Home = () => {
     const handleDestinationChange = async (e) => {
         setDestination(e.target.value)
         try {
-            const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/maps/get-suggestions`, {
+            const response = await axios.get(`http://localhost:3000/maps/get-suggestions`, {
                 params: { input: e.target.value },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -167,35 +167,46 @@ const Home = () => {
 
 
     async function findTrip() {
-        setVehiclePanel(true)
-        setPanelOpen(false)
-
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/get-fare`, {
-            params: { pickup, destination },
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        })
-
-
-        setFare(response.data)
-
-
+        setVehiclePanel(true);
+        setPanelOpen(false);
+    
+        try {
+            const response = await axios.get(`http://localhost:3000/rides/get-fare`, {
+                params: { pickup, destination },
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            setFare(response.data);
+        } catch (error) {
+            console.error('Error fetching fare:', error.response ? error.response.data : error.message);
+        }
     }
+    
 
     async function createRide() {
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
-            pickup,
-            destination,
-            vehicleType
-        }, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+        try {
+            // Check if 'user' is null or undefined before accessing _id
+            if (!user || !user._id) {
+                console.error('User data is missing or invalid');
+                return;
             }
-        })
-
-
+    
+            const response = await axios.post(`http://localhost:3000/rides/create`, {
+                userId: user._id,
+                pickup,
+                destination,
+                vehicleType
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+        } catch (error) {
+            console.error('Error creating ride:', error.response ? error.response.data : error.message);
+        }
     }
+    
 
     return (
         <div className='h-screen relative overflow-hidden'>

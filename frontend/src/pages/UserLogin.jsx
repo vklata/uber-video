@@ -22,7 +22,7 @@ const UserLogin = () => {
       password: password
     }
 
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/login`, userData)
+    const response = await axios.post(`http://localhost:3000/users/login`, userData)
 
     if (response.status === 200) {
       const data = response.data
@@ -39,7 +39,8 @@ const UserLogin = () => {
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>
       <div>
-        <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="" />
+      <div className='mb-6 text-[30px] font-semibold'>Autocar</div>
+        {/* <img className='w-16 mb-10' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYQy-OIkA6In0fTvVwZADPmFFibjmszu2A0g&s" alt="" /> */}
 
         <form onSubmit={(e) => {
           submitHandler(e)
