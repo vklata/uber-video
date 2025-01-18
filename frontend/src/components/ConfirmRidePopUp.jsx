@@ -17,7 +17,7 @@ const ConfirmRidePopUp = (props) => {
         }
     
         try {
-            const response = await axios.get(`http://localhost:3000/rides/start-ride`, {
+            const response = await axios.get(`https://uber-video-backe.onrender.com/rides/start-ride`, {
                 params: {
                     rideId: props.ride._id,
                     otp: otp

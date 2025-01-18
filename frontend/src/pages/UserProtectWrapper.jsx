@@ -16,7 +16,7 @@ const UserProtectWrapper = ({
             navigate('/login')
         }
 
-        axios.get(`http://localhost:3000/users/profile`, {
+        axios.get(`https://uber-video-backe.onrender.com/users/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

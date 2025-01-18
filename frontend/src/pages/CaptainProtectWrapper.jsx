@@ -20,7 +20,7 @@ const CaptainProtectWrapper = ({
             navigate('/captain-login')
         }
 
-        axios.get(`http://localhost:3000/captains/profile`, {
+        axios.get(`https://uber-video-backe.onrender.com/captains/profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

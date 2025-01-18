@@ -9,7 +9,7 @@ const FinishRide = (props) => {
     const navigate = useNavigate()
 
     async function endRide() {
-        const response = await axios.post(`http://localhost:3000/rides/end-ride`, {
+        const response = await axios.post(`https://uber-video-backe.onrender.com/rides/end-ride`, {
 
             rideId: props.ride._id
 

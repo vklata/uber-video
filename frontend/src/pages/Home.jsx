@@ -62,7 +62,7 @@ const Home = () => {
     const handlePickupChange = async (e) => {
         setPickup(e.target.value)
         try {
-            const response = await axios.get(`http://localhost:3000/maps/get-suggestions`, {
+            const response = await axios.get(`https://uber-video-backe.onrender.com/maps/get-suggestions`, {
                 params: { input: e.target.value },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -78,7 +78,7 @@ const Home = () => {
     const handleDestinationChange = async (e) => {
         setDestination(e.target.value)
         try {
-            const response = await axios.get(`http://localhost:3000/maps/get-suggestions`, {
+            const response = await axios.get(`https://uber-video-backe.onrender.com/maps/get-suggestions`, {
                 params: { input: e.target.value },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -171,7 +171,7 @@ const Home = () => {
         setPanelOpen(false);
     
         try {
-            const response = await axios.get(`http://localhost:3000/rides/get-fare`, {
+            const response = await axios.get(`https://uber-video-backe.onrender.com/rides/get-fare`, {
                 params: { pickup, destination },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -192,7 +192,7 @@ const Home = () => {
                 return;
             }
     
-            const response = await axios.post(`http://localhost:3000/rides/create`, {
+            const response = await axios.post(`https://uber-video-backe.onrender.com/rides/create`, {
                 userId: user._id,
                 pickup,
                 destination,

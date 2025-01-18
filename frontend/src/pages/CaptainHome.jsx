@@ -78,7 +78,7 @@ const CaptainHome = () => {
             }
 
             const response = await axios.post(
-                'http://localhost:3000/rides/confirm',
+                'https://uber-video-backe.onrender.com/rides/confirm',
                 {
                     rideId: ride._id,
                     captainId: captain._id,

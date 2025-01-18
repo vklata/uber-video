@@ -39,7 +39,7 @@ const CaptainSignup = () => {
       }
     }
 
-    const response = await axios.post(`http://localhost:3000/captains/register`, captainData)
+    const response = await axios.post(`https://uber-video-backe.onrender.com/captains/register`, captainData)
 
     if (response.status === 201) {
       const data = response.data

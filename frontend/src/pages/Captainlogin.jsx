@@ -21,7 +21,7 @@ const Captainlogin = () => {
       password
     }
 
-    const response = await axios.post(`http://localhost:3000/captains/login`, captain)
+    const response = await axios.post(`https://uber-video-backe.onrender.com/captains/login`, captain)
 
     if (response.status === 200) {
       const data = response.data
